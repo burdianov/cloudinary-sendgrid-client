@@ -13,6 +13,8 @@ const Feedback = () => {
 
   const {name, email, message, phone, uploadedFiles, buttonText, uploadPhotosButtonText} = values;
 
+  const {REACT_APP_API_PATH, REACT_APP_CLOUDINARY_CLOUD_NAME, REACT_APP_CLOUDINARY_UPLOAD_PRESET} = process.env;
+
   const handleChange = (fieldName) => event => {
     setValues({
       ...values, [fieldName]: event.target.value
