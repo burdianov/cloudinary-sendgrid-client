@@ -13,12 +13,19 @@ const Feedback = () => {
 
   const {name, email, message, phone, uploadedFiles, buttonText, uploadPhotosButtonText} = values;
 
-  const handleChange = (props) => {
-    console.log("handle change");
+  const handleChange = (fieldName) => event => {
+    setValues({
+      ...values, [fieldName]: event.target.value
+    })
   };
 
-  const handleSubmit = () => {
-    console.log("handle submit");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setValues({
+      ...values, buttonText: "Sending..."
+    });
+    // send to backend for email
+    console.table({name, email, phone, message, uploadedFiles})
   };
 
   const feedbackForm = () => (
