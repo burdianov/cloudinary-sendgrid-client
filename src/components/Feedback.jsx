@@ -30,8 +30,25 @@ const Feedback = () => {
     console.table({name, email, phone, message, uploadedFiles})
   };
 
+  const uploadWidget = () => {
+    window.cloudinary.openUploadWidget({
+        cloud_name: REACT_APP_CLOUDINARY_CLOUD_NAME,
+        upload_preset: REACT_APP_CLOUDINARY_UPLOAD_PRESET,
+        tags: ['ebooks']
+      },
+      function (error, result) {
+        console.log(result);
+      });
+  };
+
   const feedbackForm = () => (
     <>
+      <div className="form-group pt-5">
+        <button
+          className="btn btn-outline-secondary btn-block p-5"
+          onClick={uploadWidget}
+        >{uploadPhotosButtonText}</button>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="text-muted">Description</label>
