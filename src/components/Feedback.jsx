@@ -37,7 +37,12 @@ const Feedback = () => {
         tags: ['ebooks']
       },
       function (error, result) {
-        console.log(result);
+        // console.log(result);
+        setValues({
+          ...values,
+          uploadedFiles: result,
+          uploadPhotosButtonText: `${result ? result.length : 0} photos uploaded.`
+        })
       });
   };
 
