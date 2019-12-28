@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import Layout from "./Layout";
 
 const Feedback = () => {
   const [values, setValues] = useState({
@@ -33,7 +34,7 @@ const Feedback = () => {
     // console.table({name, email, phone, message, uploadedFiles})
     axios({
       method: "POST",
-      url: `${process.env.REACT_APP_API_PATH}/feedback`,
+      url: `${REACT_APP_API_PATH}/feedback`,
       data: {name, email, phone, message, uploadedFiles}
     })
       .then(response => {
@@ -78,7 +79,7 @@ const Feedback = () => {
 
   const feedbackForm = () => (
     <>
-      <div className="form-group pt-5">
+      <div className="form-group">
         <button
           className="btn btn-outline-secondary btn-block p-5"
           onClick={uploadWidget}
@@ -132,10 +133,15 @@ const Feedback = () => {
   );
 
   return (
-    <div>
+    <Layout>
       <ToastContainer/>
-      {feedbackForm()}
-    </div>
+      <div className="container text-center">
+        <h1 className="p-5">Feedback Online</h1>
+      </div>
+      <div className="container col-md-8 offset-md-2">
+        {feedbackForm()}
+      </div>
+    </Layout>
   )
 };
 
